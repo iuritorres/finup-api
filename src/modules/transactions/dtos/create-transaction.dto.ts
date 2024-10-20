@@ -1,7 +1,18 @@
-import { IsEnum, IsNotEmpty, IsNumber, IsUUID } from 'class-validator';
+import {
+	IsDateString,
+	IsEnum,
+	IsNotEmpty,
+	IsNumber,
+	IsString,
+	IsUUID,
+} from 'class-validator';
 import { TransactionType } from '../enums/transaction-type.enum';
 
 export class CreateTransactionDto {
+	@IsNotEmpty()
+	@IsString()
+	name: string;
+
 	@IsNotEmpty()
 	@IsNumber()
 	amount: number;
@@ -9,6 +20,10 @@ export class CreateTransactionDto {
 	@IsNotEmpty()
 	@IsEnum(TransactionType)
 	type: TransactionType;
+
+	@IsNotEmpty()
+	@IsDateString()
+	date: Date;
 
 	@IsNotEmpty()
 	@IsUUID()

@@ -4,15 +4,19 @@ import { Transaction } from 'src/modules/transactions/entities/transaction.entit
 export class PrismaTransactionsMapper {
 	static toHttp({
 		id,
+		name,
 		amount,
 		type,
+		date,
 		categoryId,
 		userId,
 	}: Transaction): TransactionDto {
 		return {
 			id,
+			name,
 			amount,
 			type,
+			date,
 			categoryId,
 			userId,
 		};
