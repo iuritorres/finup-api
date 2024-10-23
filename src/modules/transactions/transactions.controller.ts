@@ -23,9 +23,9 @@ export class TransactionsController {
 		return PrismaTransactionsMapper.toHttp(transaction);
 	}
 
-	@Get()
-	async findAll(): Promise<TransactionDto[]> {
-		const transactions = await this.service.findAll();
+	@Get(':userId')
+	async findAll(@Param('userId') userId: string): Promise<TransactionDto[]> {
+		const transactions = await this.service.findAll(userId);
 		return transactions.map((transaction) =>
 			PrismaTransactionsMapper.toHttp(transaction),
 		);
