@@ -1,14 +1,5 @@
-import {
-	Body,
-	Controller,
-	Delete,
-	Get,
-	Param,
-	Patch,
-	Post,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
 import { PrismaUsersMapper } from 'src/database/prisma/mappers/prisma-users.mapper';
-import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserDto } from './dtos/user.dto';
 import { UsersService } from './users.service';
@@ -16,12 +7,6 @@ import { UsersService } from './users.service';
 @Controller('users')
 export class UsersController {
 	constructor(private readonly service: UsersService) {}
-
-	@Post()
-	async create(@Body() body: CreateUserDto): Promise<UserDto> {
-		const user = await this.service.create(body);
-		return PrismaUsersMapper.toHttp(user);
-	}
 
 	@Get()
 	async findAll(): Promise<UserDto[]> {
