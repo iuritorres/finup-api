@@ -29,9 +29,9 @@ export class UsersController {
 		return users.map((user) => PrismaUsersMapper.toHttp(user));
 	}
 
-	@Get(':id')
-	async findOne(@Param('id') id: string): Promise<UserDto> {
-		const user = await this.service.findOne(id);
+	@Get(':email')
+	async findOne(@Param('email') email: string): Promise<UserDto> {
+		const user = await this.service.findOne(email);
 		return PrismaUsersMapper.toHttp(user);
 	}
 

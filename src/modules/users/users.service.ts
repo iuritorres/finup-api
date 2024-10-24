@@ -7,7 +7,7 @@ import { UsersRepository } from './repositories/users.repository';
 
 @Injectable()
 export class UsersService {
-	constructor(private repository: UsersRepository) {}
+	constructor(private readonly repository: UsersRepository) {}
 
 	async create(createUserDto: CreateUserDto): Promise<User> {
 		const user = new User({
@@ -22,8 +22,8 @@ export class UsersService {
 		return await this.repository.findAll();
 	}
 
-	async findOne(id: string): Promise<User> {
-		return await this.repository.findOne(id);
+	async findOne(email: string): Promise<User> {
+		return await this.repository.findOne(email);
 	}
 
 	async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {

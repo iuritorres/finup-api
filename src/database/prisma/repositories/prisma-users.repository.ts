@@ -30,12 +30,12 @@ export class PrismaUsersRepository implements UsersRepository {
 		return await this.prisma.user.findMany();
 	}
 
-	async findOne(id: string): Promise<User> {
-		const user = await this.prisma.user.findUnique({ where: { id } });
+	async findOne(email: string): Promise<User> {
+		const user = await this.prisma.user.findUnique({ where: { email } });
 
 		if (!user)
 			throw new NotFoundException({
-				message: `User with id ${id} not found`,
+				message: `User with email ${email} not found`,
 			});
 
 		return user;
