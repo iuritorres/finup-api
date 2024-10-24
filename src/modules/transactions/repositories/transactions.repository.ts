@@ -6,7 +6,7 @@ export abstract class TransactionsRepository {
 	abstract create(
 		createTransactionDto: CreateTransactionDto,
 	): Promise<Transaction>;
-	abstract findAll(): Promise<Transaction[]>;
+	abstract findAll(userId: string): Promise<Transaction[]>;
 	abstract findOne(id: string): Promise<Transaction>;
 	abstract update(
 		id: string,

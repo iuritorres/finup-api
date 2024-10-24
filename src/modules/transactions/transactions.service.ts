@@ -15,8 +15,8 @@ export class TransactionsService {
 		return await this.repository.create(transaction);
 	}
 
-	async findAll(): Promise<Transaction[]> {
-		return await this.repository.findAll();
+	async findAll(userId: string): Promise<Transaction[]> {
+		return await this.repository.findAll(userId);
 	}
 
 	async findOne(id: string): Promise<Transaction> {

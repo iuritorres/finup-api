@@ -6,6 +6,7 @@ import {
 	Param,
 	Patch,
 	Post,
+	Request,
 } from '@nestjs/common';
 import { PrismaTransactionsMapper } from 'src/database/prisma/mappers/prisma-transactions.mapper';
 import { CreateTransactionDto } from './dtos/create-transaction.dto';
@@ -24,8 +25,9 @@ export class TransactionsController {
 	}
 
 	@Get()
-	async findAll(): Promise<TransactionDto[]> {
-		const transactions = await this.service.findAll();
+	async findAll(@Request() request): Promise<TransactionDto[]> {
+		const transactions = await this.service.findAll(request.user.userId);
+
 		return transactions.map((transaction) =>
 			PrismaTransactionsMapper.toHttp(transaction),
 		);
