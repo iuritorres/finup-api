@@ -24,19 +24,33 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Description A financial management API project using PostgreSQL as the database and Prisma as the ORM
 
 ## Project setup
-
+Install pnpm globally. To install it globally, run:
 ```bash
-$ pnpm install
+$ npm install -g pnpm
 ```
 
-## Compile and run the project
+## Clone the repository
 
 ```bash
 # development
-$ pnpm run start
+$ git clone https://github.com/iuritorres/finup-api.git
+
+# Access the project directory
+$ cd ./"YOUR DOCUMENT"/"FOLDER"
+
+# Install project dependencies:
+$ pnpm install
+
+##Prisma configurations
+
+# Generate Prisma artifacts
+$ pnpm db:generate
+
+# Apply migrations to the database
+$ pnpm db:push
 
 # watch mode
 $ pnpm run start:dev
