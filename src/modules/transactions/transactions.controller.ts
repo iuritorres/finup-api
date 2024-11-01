@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { PrismaTransactionsMapper } from 'src/database/prisma/mappers/prisma-transactions.mapper';
 import { CreateTransactionDto } from './dtos/create-transaction.dto';
+import { FindAllTransactionsDto } from './dtos/findall-transactions.dto';
 import { TransactionDto } from './dtos/transaction.dto';
 import { UpdateTransactionDto } from './dtos/update-transaction.dto';
 import { TransactionsService } from './transactions.service';
@@ -19,18 +20,22 @@ export class TransactionsController {
 	constructor(private readonly service: TransactionsService) {}
 
 	@Post()
-	async create(@Body() body: CreateTransactionDto): Promise<TransactionDto> {
-		const transaction = await this.service.create(body);
+	async create(
+		@Request() request,
+		@Body() body: CreateTransactionDto,
+	): Promise<TransactionDto> {
+		const transaction = await this.service.create({
+			...body,
+			userId: request.user.userId,
+		});
+
 		return PrismaTransactionsMapper.toHttp(transaction);
 	}
 
 	@Get()
-	async findAll(@Request() request): Promise<TransactionDto[]> {
+	async findAll(@Request() request): Promise<FindAllTransactionsDto[]> {
 		const transactions = await this.service.findAll(request.user.userId);
-
-		return transactions.map((transaction) =>
-			PrismaTransactionsMapper.toHttp(transaction),
-		);
+		return transactions;
 	}
 
 	@Get(':id')

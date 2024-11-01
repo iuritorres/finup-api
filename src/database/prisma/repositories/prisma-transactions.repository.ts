@@ -5,6 +5,7 @@ import { Transaction } from 'src/modules/transactions/entities/transaction.entit
 import { TransactionType } from 'src/modules/transactions/enums/transaction-type.enum';
 import { TransactionsRepository } from 'src/modules/transactions/repositories/transactions.repository';
 import { PrismaService } from '../prisma.service';
+import { FindAllTransactionsDto } from 'src/modules/transactions/dtos/findall-transactions.dto';
 
 @Injectable()
 export class PrismaTransactionsRepository implements TransactionsRepository {
@@ -39,14 +40,21 @@ export class PrismaTransactionsRepository implements TransactionsRepository {
 		return { ...transaction, type: transaction.type as TransactionType };
 	}
 
-	async findAll(userId: string): Promise<Transaction[]> {
+	async findAll(userId: string): Promise<FindAllTransactionsDto[]> {
 		const transactions = await this.prisma.transaction.findMany({
 			where: { userId },
+			include: {
+				category: {
+					select: {
+						name: true,
+					},
+				},
+			},
 		});
 
-		return transactions.map((transactions) => ({
-			...transactions,
-			type: transactions.type as TransactionType,
+		return transactions.map((transaction) => ({
+			...transaction,
+			type: transaction.type as TransactionType,
 		}));
 	}
 
