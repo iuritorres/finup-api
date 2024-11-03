@@ -50,6 +50,7 @@ export class PrismaTransactionsRepository implements TransactionsRepository {
 					},
 				},
 			},
+			orderBy: { date: 'desc' },
 		});
 
 		return transactions.map((transaction) => ({
