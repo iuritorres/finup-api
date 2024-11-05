@@ -26,6 +26,17 @@
 
 Description A financial management API project using PostgreSQL as the database and Prisma as the ORM
 
+**Requirements** Before starting, ensure that the following tools are installed on your machine:
+
+- [Node.js](https://node.js/?form=MG0AV3) (>= 14.x)
+    
+- pnpm (Package Manager)
+    
+- PostgreSQL (running locally)
+    
+- Git
+    
+
 ## Project setup
 Install pnpm globally. To install it globally, run:
 ```bash
