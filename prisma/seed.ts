@@ -135,6 +135,39 @@ const transactions = [
 	},
 ];
 
+const goals = [
+	{
+		id: 'c02e2067-2b2a-4380-bf91-5037a835f1dd',
+		name: 'Comprar Carro',
+		amount: 65000,
+		date: new Date('2023-10-01'),
+	},
+	{
+		id: 'eb32117e-6ccd-46e7-abb2-150c9885a398',
+		name: 'Comprar Casa',
+		amount: 165000,
+		date: new Date('2023-10-01'),
+	},
+	{
+		id: '3b2b4965-1fe8-4dd8-a942-04f44fc6a65f',
+		name: 'PC Gamer',
+		amount: 5200,
+		date: new Date('2023-10-01'),
+	},
+	{
+		id: '2016a886-c04c-4293-af2d-ee4d04cf7b1d',
+		name: 'Celular Novo',
+		amount: 1700,
+		date: new Date('2023-10-01'),
+	},
+	{
+		id: '1bd978b9-af68-471a-a007-161f7901ef6b',
+		name: 'Box Harry Potter',
+		amount: 800,
+		date: new Date('2023-10-01'),
+	},
+];
+
 async function main() {
 	const user = await prisma.user.create({
 		data: {
@@ -162,6 +195,18 @@ async function main() {
 				type: transaction.type,
 				date: transaction.date,
 				categoryId: transaction.categoryId,
+				userId: user.id,
+			},
+		});
+	}
+
+	for (const goal of goals) {
+		await prisma.goal.create({
+			data: {
+				id: goal.id,
+				name: goal.name,
+				amount: goal.amount,
+				date: goal.date,
 				userId: user.id,
 			},
 		});
