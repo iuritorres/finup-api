@@ -16,9 +16,9 @@ export class PrismaGoalsRepository implements GoalsRepository {
 		});
 
 		if (!userExists)
-			throw new NotFoundException({
-				message: `User with id ${createGoalDto.userId} not found`,
-			});
+			throw new NotFoundException(
+				`User with id ${createGoalDto.userId} not found`,
+			);
 
 		return await this.prisma.goal.create({
 			data: { ...createGoalDto },
@@ -37,10 +37,7 @@ export class PrismaGoalsRepository implements GoalsRepository {
 			where: { id },
 		});
 
-		if (!goal)
-			throw new NotFoundException({
-				message: `Goal with id ${id} not found`,
-			});
+		if (!goal) throw new NotFoundException(`Goal with id ${id} not found`);
 
 		return goal;
 	}
@@ -51,9 +48,7 @@ export class PrismaGoalsRepository implements GoalsRepository {
 		});
 
 		if (!goalExists)
-			throw new NotFoundException({
-				message: `Goal with id ${id} not found`,
-			});
+			throw new NotFoundException(`Goal with id ${id} not found`);
 
 		return await this.prisma.goal.update({
 			where: { id },
@@ -67,9 +62,7 @@ export class PrismaGoalsRepository implements GoalsRepository {
 		});
 
 		if (!goalExists)
-			throw new NotFoundException({
-				message: `Goal with id ${id} not found`,
-			});
+			throw new NotFoundException(`Goal with id ${id} not found`);
 
 		await this.prisma.goal.delete({ where: { id } });
 	}

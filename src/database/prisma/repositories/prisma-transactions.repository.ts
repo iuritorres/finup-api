@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTransactionDto } from 'src/modules/transactions/dtos/create-transaction.dto';
+import { FindAllTransactionsDto } from 'src/modules/transactions/dtos/findall-transactions.dto';
 import { UpdateTransactionDto } from 'src/modules/transactions/dtos/update-transaction.dto';
 import { Transaction } from 'src/modules/transactions/entities/transaction.entity';
 import { TransactionType } from 'src/modules/transactions/enums/transaction-type.enum';
 import { TransactionsRepository } from 'src/modules/transactions/repositories/transactions.repository';
 import { PrismaService } from '../prisma.service';
-import { FindAllTransactionsDto } from 'src/modules/transactions/dtos/findall-transactions.dto';
 
 @Injectable()
 export class PrismaTransactionsRepository implements TransactionsRepository {
@@ -19,9 +19,9 @@ export class PrismaTransactionsRepository implements TransactionsRepository {
 		});
 
 		if (!userExists)
-			throw new NotFoundException({
-				message: `User with id ${createTransactionDto.userId} not found`,
-			});
+			throw new NotFoundException(
+				`User with id ${createTransactionDto.userId} not found`,
+			);
 
 		const transactionCategoryExists =
 			await this.prisma.transactionCategory.findUnique({
@@ -29,9 +29,9 @@ export class PrismaTransactionsRepository implements TransactionsRepository {
 			});
 
 		if (!transactionCategoryExists)
-			throw new NotFoundException({
-				message: `Transaction category with id ${createTransactionDto.categoryId} not found`,
-			});
+			throw new NotFoundException(
+				`Transaction category with id ${createTransactionDto.categoryId} not found`,
+			);
 
 		const transaction = await this.prisma.transaction.create({
 			data: { ...createTransactionDto },
@@ -65,9 +65,7 @@ export class PrismaTransactionsRepository implements TransactionsRepository {
 		});
 
 		if (!transaction)
-			throw new NotFoundException({
-				message: `Transaction with id ${id} not found`,
-			});
+			throw new NotFoundException(`Transaction with id ${id} not found`);
 
 		return { ...transaction, type: transaction.type as TransactionType };
 	}
@@ -81,9 +79,7 @@ export class PrismaTransactionsRepository implements TransactionsRepository {
 		});
 
 		if (!transactionExists)
-			throw new NotFoundException({
-				message: `Transaction with id ${id} not found`,
-			});
+			throw new NotFoundException(`Transaction with id ${id} not found`);
 
 		const transaction = await this.prisma.transaction.update({
 			where: { id },
@@ -99,9 +95,7 @@ export class PrismaTransactionsRepository implements TransactionsRepository {
 		});
 
 		if (!transactionExists)
-			throw new NotFoundException({
-				message: `Transaction with id ${id} not found`,
-			});
+			throw new NotFoundException(`Transaction with id ${id} not found`);
 
 		await this.prisma.transaction.delete({ where: { id } });
 	}

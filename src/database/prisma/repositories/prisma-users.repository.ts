@@ -19,9 +19,9 @@ export class PrismaUsersRepository implements UsersRepository {
 		});
 
 		if (userExists)
-			throw new ConflictException({
-				message: `User with email ${createUserDto.email} already exists`,
-			});
+			throw new ConflictException(
+				`User with email ${createUserDto.email} already exists`,
+			);
 
 		return await this.prisma.user.create({ data: createUserDto });
 	}
@@ -34,9 +34,7 @@ export class PrismaUsersRepository implements UsersRepository {
 		const user = await this.prisma.user.findUnique({ where: { email } });
 
 		if (!user)
-			throw new NotFoundException({
-				message: `User with email ${email} not found`,
-			});
+			throw new NotFoundException(`User with id ${email} not found`);
 
 		return user;
 	}
@@ -45,9 +43,7 @@ export class PrismaUsersRepository implements UsersRepository {
 		const userExists = await this.prisma.user.findUnique({ where: { id } });
 
 		if (!userExists)
-			throw new NotFoundException({
-				message: `User with id ${id} not found`,
-			});
+			throw new NotFoundException(`User with id ${id} not found`);
 
 		return await this.prisma.user.update({
 			where: { id },
@@ -59,9 +55,7 @@ export class PrismaUsersRepository implements UsersRepository {
 		const userExists = await this.prisma.user.findUnique({ where: { id } });
 
 		if (!userExists)
-			throw new NotFoundException({
-				message: `User with id ${id} not found`,
-			});
+			throw new NotFoundException(`User with id ${id} not found`);
 
 		await this.prisma.user.delete({ where: { id } });
 	}
