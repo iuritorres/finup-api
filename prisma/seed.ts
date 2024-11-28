@@ -51,7 +51,7 @@ const transactions = [
 		name: 'Aluguel',
 		amount: 1000,
 		type: TransactionType.EXPENSE,
-		date: new Date('2023-10-01'),
+		date: new Date('2023-11-01'),
 		categoryId: categories.find((category) => category.label === 'Moradia')!
 			.id,
 	},
@@ -59,7 +59,7 @@ const transactions = [
 		name: 'Landing Page Recifer',
 		amount: 500,
 		type: TransactionType.INCOME,
-		date: new Date('2023-10-02'),
+		date: new Date('2023-11-02'),
 		categoryId: categories.find(
 			(category) => category.label === 'Freelancer',
 		)!.id,
@@ -68,7 +68,7 @@ const transactions = [
 		name: 'Jantar em Família',
 		amount: 200,
 		type: TransactionType.EXPENSE,
-		date: new Date('2023-10-03'),
+		date: new Date('2023-11-03'),
 		categoryId: categories.find(
 			(category) => category.label === 'Alimentação',
 		)!.id,
@@ -77,7 +77,7 @@ const transactions = [
 		name: 'Compra de Supermercado',
 		amount: 300,
 		type: TransactionType.EXPENSE,
-		date: new Date('2023-10-04'),
+		date: new Date('2023-11-04'),
 		categoryId: categories.find(
 			(category) => category.label === 'Alimentação',
 		)!.id,
@@ -86,7 +86,7 @@ const transactions = [
 		name: 'Mensalidade Escolar',
 		amount: 500,
 		type: TransactionType.EXPENSE,
-		date: new Date('2023-10-05'),
+		date: new Date('2023-11-05'),
 		categoryId: categories.find(
 			(category) => category.label === 'Educação',
 		)!.id,
@@ -95,7 +95,7 @@ const transactions = [
 		name: 'Salário Mensal',
 		amount: 3000,
 		type: TransactionType.INCOME,
-		date: new Date('2023-10-06'),
+		date: new Date('2023-11-06'),
 		categoryId: categories.find((category) => category.label === 'Salário')!
 			.id,
 	},
@@ -103,7 +103,7 @@ const transactions = [
 		name: 'Projeto Freelancer',
 		amount: 1000,
 		type: TransactionType.INCOME,
-		date: new Date('2023-10-07'),
+		date: new Date('2023-11-07'),
 		categoryId: categories.find(
 			(category) => category.label === 'Freelancer',
 		)!.id,
@@ -112,7 +112,7 @@ const transactions = [
 		name: 'Cinema com Amigos',
 		amount: 50,
 		type: TransactionType.EXPENSE,
-		date: new Date('2023-10-08'),
+		date: new Date('2023-11-08'),
 		categoryId: categories.find((category) => category.label === 'Lazer')!
 			.id,
 	},
@@ -120,7 +120,7 @@ const transactions = [
 		name: 'Consulta Médica',
 		amount: 100,
 		type: TransactionType.EXPENSE,
-		date: new Date('2023-10-09'),
+		date: new Date('2023-11-09'),
 		categoryId: categories.find((category) => category.label === 'Saúde')!
 			.id,
 	},
@@ -128,7 +128,7 @@ const transactions = [
 		name: 'Passagem de Ônibus',
 		amount: 10,
 		type: TransactionType.EXPENSE,
-		date: new Date('2023-10-10'),
+		date: new Date('2023-11-10'),
 		categoryId: categories.find(
 			(category) => category.label === 'Transporte',
 		)!.id,
@@ -140,31 +140,31 @@ const goals = [
 		id: 'c02e2067-2b2a-4380-bf91-5037a835f1dd',
 		name: 'Comprar Carro',
 		amount: 65000,
-		date: new Date('2023-10-01'),
+		date: new Date('2023-11-01'),
 	},
 	{
 		id: 'eb32117e-6ccd-46e7-abb2-150c9885a398',
 		name: 'Comprar Casa',
 		amount: 165000,
-		date: new Date('2023-10-01'),
+		date: new Date('2023-11-01'),
 	},
 	{
 		id: '3b2b4965-1fe8-4dd8-a942-04f44fc6a65f',
 		name: 'PC Gamer',
 		amount: 5200,
-		date: new Date('2023-10-01'),
+		date: new Date('2023-11-01'),
 	},
 	{
 		id: '2016a886-c04c-4293-af2d-ee4d04cf7b1d',
 		name: 'Celular Novo',
 		amount: 1700,
-		date: new Date('2023-10-01'),
+		date: new Date('2023-11-01'),
 	},
 	{
 		id: '1bd978b9-af68-471a-a007-161f7901ef6b',
 		name: 'Box Harry Potter',
 		amount: 800,
-		date: new Date('2023-10-01'),
+		date: new Date('2023-11-01'),
 	},
 ];
 

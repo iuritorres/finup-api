@@ -34,7 +34,7 @@ export class PrismaUsersRepository implements UsersRepository {
 		const user = await this.prisma.user.findUnique({ where: { email } });
 
 		if (!user)
-			throw new NotFoundException(`User with id ${email} not found`);
+			throw new NotFoundException(`User with email ${email} not found`);
 
 		return user;
 	}
